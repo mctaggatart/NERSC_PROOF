@@ -1,0 +1,16 @@
+#PBS -q ccm_queue
+#PBS -l mppwidth=24
+#PBS -l walltime=00:50:00
+#PBS -N myscript
+#PBS -e myscript.$PBS_JOBID.err
+#PBS -o myscript.$PBS_JOBID.out
+
+
+cd $PBS_O_WORKDIR
+
+export  CRAY_ROOTFS=DSL
+module load ccm
+module load openmpi_ccm
+module load ipm
+
+ccmrun mpirun -np 1  /global/project/projectdirs/pdsf/amct/hopper/root/root.sh
